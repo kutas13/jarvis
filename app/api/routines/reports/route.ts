@@ -1,0 +1,2 @@
+import {NextRequest,NextResponse} from 'next/server';import {adminDb,ownerId} from '@/lib/db';import {requireBrowserKey} from '@/lib/security';
+export async function GET(req:NextRequest){if(!requireBrowserKey(req))return NextResponse.json({error:'Yetkisiz'},{status:401});const {data,error}=await adminDb().from('routine_reports').select('*').eq('user_id',ownerId()).order('created_at',{ascending:false}).limit(30);return NextResponse.json(error?{error:error.message}:{reports:data||[]},{status:error?500:200});}

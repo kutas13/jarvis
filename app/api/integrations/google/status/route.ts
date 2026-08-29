@@ -1,0 +1,2 @@
+import {NextRequest,NextResponse} from 'next/server';import {adminDb,ownerId} from '@/lib/db';import {requireBrowserKey} from '@/lib/security';
+export async function GET(req:NextRequest){if(!requireBrowserKey(req))return NextResponse.json({error:'Yetkisiz'},{status:401});const {data}=await adminDb().from('integrations').select('enabled,updated_at,scopes').eq('user_id',ownerId()).eq('provider','google').maybeSingle();return NextResponse.json({connected:!!data?.enabled,details:data||null});}
