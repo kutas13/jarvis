@@ -17,3 +17,9 @@ node_modules/
 *.tsbuildinfo
 logs/
 *.log
+.render-api-key.local
+JARVIS-LOCAL-SECRETS.txt
+windows-agent/logs/
+windows-agent/.venv/
+JARVIS-MORNING.ps1
+JARVIS-EVENING.ps1

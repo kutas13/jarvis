@@ -1,0 +1,9 @@
+﻿services:
+  - type: web
+    name: jarvis
+    runtime: node
+    plan: free
+    autoDeploy: true
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
